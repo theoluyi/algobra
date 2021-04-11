@@ -7,12 +7,32 @@
 //   capitalize('a lazy fox') --> 'A Lazy Fox'
 //   capitalize('look, it is working!') --> 'Look, It Is Working!'
 
+
+/* 
+For the for loop version of this, I think we want to capitalize 
+every single letter that is preceded by a space. We also automatically
+Capitalize the first letter
+*/
+
 function capitalize(str) {
-    return str
-    .split(' ')
-    .map(word => word[0]
-    .toUpperCase() + word.slice(1))
-    .join(' '); 
+    let newString = ''
+    for (let i = 0; i < str.length; ++i) {
+        if (i===0 || str[i-1]===' ') {
+            newString += str[i].toUpperCase()
+        } else {newString += str[i]}
+    }
+    return newString
 }
+
+
+
+
+// function capitalize(str) {
+//     return str
+//     .split(' ')
+//     .map(word => word[0]
+//     .toUpperCase() + word.slice(1))
+//     .join(' '); 
+// }
 
 module.exports = capitalize;
