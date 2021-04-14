@@ -17,22 +17,14 @@
 //       '### '
 //       '####'
 
-/*
-For this problem We just want a string console logged 
-at each iteration. That string has i+1 pound signs 
-followed by N-(i+1) number of spaces
- */
-
-/*
-it looks like we could use some debugging
-*/
 function steps(n) {
+  let array = [];
   for (let i = 0; i < n + 1; ++i) {
-    console.log(createStep(i, n));
+    array.push(createStep(i, n));
   }
   // array is now an array of steps
   //   console.log(array.join(`\n`));
-  //   array.forEach((thing) => console.log(thing));
+  array.forEach((stair) => console.log(stair));
 }
 
 // on the 2nd iteration with n=4, we want to print   '##  '
@@ -42,10 +34,9 @@ function createStep(iteration, stepTotal) {
   let numOfHashtags = iteration + 1;
   let stepWithoutSpaces = new Array(numOfHashtags).fill('#');
 
-  let numOfSpaces =
-    stepTotal - numOfHashtags > 0 ? stepTotal - numOfHashtags : 0;
-  let spaces = new Array(numOfSpaces).fill(' ');
-
+  // I think the problem is here and something bad is happening
+  // with the new Array creation because the arg value is improper
+  let spaces = new Array(stepTotal - iteration).fill(' ');
   let finalValue = stepWithoutSpaces.concat(spaces).join('');
   return finalValue;
 }
