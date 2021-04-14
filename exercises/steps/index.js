@@ -27,10 +27,13 @@ followed by N-(i+1) number of spaces
 it looks like we could use some debugging
 */
 function steps(n) {
+  let array = [];
   for (let i = 0; i < n + 1; ++i) {
-    debugger;
-    console.log(createStep(i, n));
+    array.push(createStep(i, n));
   }
+  // array is now an array of steps
+  //   console.log(array.join(`\n`));
+  array.forEach((thing) => console.log(thing));
 }
 
 // on the 2nd iteration with n=4, we want to print   '##  '
@@ -39,13 +42,12 @@ function createStep(iteration, stepTotal) {
   // var str = new Array(len + 1).join( character );
   let numOfHashtags = iteration + 1;
   let stepWithoutSpaces = new Array(numOfHashtags).fill('#');
-  let spaces = new Array(stepTotal - numOfHashtags).fill(' ');
+  let numOfSpaces =
+    stepTotal - numOfHashtags > 0 ? stepTotal - numOfHashtags : 0;
+  let spaces = new Array(numOfSpaces).fill(' ');
   let finalValue = stepWithoutSpaces.concat(spaces).join('');
-  console.log('finalValue.length :>> ', finalValue.length);
   return finalValue;
 }
-
-steps(6);
 
 module.exports = steps;
 
