@@ -30,19 +30,49 @@ function steps(n) {
 // on the 2nd iteration with n=4, we want to print   '##  '
 // on the third iteration with n=4, we want to print '### '
 function createStep(iteration, stepTotal) {
-  // var str = new Array(len + 1).join( character );
   let numOfHashtags = iteration + 1;
-  let stepWithoutSpaces = new Array(numOfHashtags).fill('#');
+  let stepWithoutSpaces = new Array(numOfHashtags).fill('#').join('');
+
+  // trying a ternary here to prevent creating an array with a negative size, which breaks JS
+  let numSpaces = stepTotal - iteration > 0 ? stepTotal - iteration : 0;
 
   // I think the problem is here and something bad is happening
   // with the new Array creation because the arg value is improper
-  let spaces = new Array(stepTotal - iteration).fill(' ');
-  let finalValue = stepWithoutSpaces.concat(spaces).join('');
+  let spaces = new Array(numSpaces).fill(' ').join('');
+  let finalValue = stepWithoutSpaces.concat(spaces);
   return finalValue;
 }
 
+createStep(1, 5);
+
 module.exports = steps;
 
+// 2nd fail
+// function steps(n) {
+//   let array = [];
+//   for (let i = 0; i < n + 1; ++i) {
+//     array.push(createStep(i, n));
+//   }
+//   // array is now an array of steps
+//   //   console.log(array.join(`\n`));
+//   array.forEach((stair) => console.log(stair));
+// }
+
+// // on the 2nd iteration with n=4, we want to print   '##  '
+// // on the third iteration with n=4, we want to print '### '
+// function createStep(iteration, stepTotal) {
+//   // var str = new Array(len + 1).join( character );
+//   let numOfHashtags = iteration + 1;
+//   let stepWithoutSpaces = new Array(numOfHashtags).fill('#');
+
+//   // I think the problem is here and something bad is happening
+//   // with the new Array creation because the arg value is improper
+//   let spaces = new Array(stepTotal - iteration).fill(' ');
+//   let finalValue = stepWithoutSpaces.concat(spaces).join('');
+//   return finalValue;
+// }
+
+// first fail
 // function steps(n) {
 //   const stepsArr = [];
 //   for (let i = 0; i <= n; ++i) {
