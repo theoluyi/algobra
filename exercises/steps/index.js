@@ -18,32 +18,47 @@
 //       '####'
 
 function steps(n) {
-  let array = [];
-  for (let i = 0; i < n + 1; ++i) {
-    array.push(createStep(i, n));
+  for (let row = 0; row < n; row++) {
+    let stair = '';
+    for (let column = 0; column < n; column++) {
+      if (column <= row) {
+        stair += '#';
+      } else {
+        stair += ' ';
+      }
+    }
+    console.log(stair);
   }
-  // array is now an array of steps
-  //   console.log(array.join(`\n`));
-  array.forEach((stair) => console.log(stair));
-}
-
-// on the 2nd iteration with n=4, we want to print   '##  '
-// on the third iteration with n=4, we want to print '### '
-function createStep(iteration, stepTotal) {
-  let numOfHashtags = iteration + 1;
-  let stepWithoutSpaces = new Array(numOfHashtags).fill('#').join('');
-
-  // trying a ternary here to prevent creating an array with a negative size, which breaks JS
-  let numSpaces = stepTotal - iteration > 0 ? stepTotal - iteration : 0;
-
-  // I think the problem is here and something bad is happening
-  // with the new Array creation because the arg value is improper
-  let spaces = new Array(numSpaces).fill(' ').join('');
-  let finalValue = stepWithoutSpaces.concat(spaces);
-  return finalValue;
 }
 
 module.exports = steps;
+
+// meh
+// function steps(n) {
+//   let array = [];
+//   for (let i = 0; i < n + 1; ++i) {
+//     array.push(createStep(i, n));
+//   }
+//   // array is now an array of steps
+//   //   console.log(array.join(`\n`));
+//   array.forEach((stair) => console.log(stair));
+// }
+
+// // on the 2nd iteration with n=4, we want to print   '##  '
+// // on the third iteration with n=4, we want to print '### '
+// function createStep(iteration, stepTotal) {
+//   let numOfHashtags = iteration + 1;
+//   let stepWithoutSpaces = new Array(numOfHashtags).fill('#').join('');
+
+//   // trying a ternary here to prevent creating an array with a negative size, which breaks JS
+//   let numSpaces = stepTotal - iteration > 0 ? stepTotal - iteration : 0;
+
+//   // I think the problem is here and something bad is happening
+//   // with the new Array creation because the arg value is improper
+//   let spaces = new Array(numSpaces).fill(' ').join('');
+//   let finalValue = stepWithoutSpaces.concat(spaces);
+//   return finalValue;
+// }
 
 // 2nd fail
 // function steps(n) {
