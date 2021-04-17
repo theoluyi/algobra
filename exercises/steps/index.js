@@ -43,8 +43,6 @@ function createStep(iteration, stepTotal) {
   return finalValue;
 }
 
-createStep(1, 5);
-
 module.exports = steps;
 
 // 2nd fail
